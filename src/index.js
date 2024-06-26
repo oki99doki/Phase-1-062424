@@ -1,7 +1,7 @@
 "use strict"; // use to enforce a stricter set of rules and best-practices
 
 // ~~~~~~~~~ Console Logging
-
+AuthenticatorResponse
 // ~~~~~~~~~~~~ Debugging
 
 // ~~~~~~~~~~~~ Variables
