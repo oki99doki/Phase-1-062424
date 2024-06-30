@@ -102,14 +102,14 @@ renderBook(bookStore.inventory[3]) */
 //.forEach
 //Use if one only wants to run instructions for each and not update //any not create.
 //someArray.forEach( (curElement) => {instructions})
-//bookStore.inventory.forEach( (curBook) => {renderBook(curBook)})
+bookStore.inventory.forEach( (curBook) => {renderBook(curBook)})
 
 //Shortcut
 //bookStore.inventory.forEach(renderBook)
 
 //.map will replace each element in an array with an updated element
 //use this if one wants to change array
-bookStore.inventory.map( (curBook) => {renderBook(curBook)})
+//bookStore.inventory.map( (curBook) => {renderBook(curBook)})
 
 
 
