@@ -5,6 +5,55 @@ const bookList = document.querySelector("#book-list");
  * 
  * Renders a book card to DOM given a book object
  */
+
+const formButton = document.getElementById('toggleForm')
+const bookForm = document.getElementById('book-form')
+
+//e will contain all information regarding the form
+//including the inputs and their values
+//we also need e to prevent the default browser behavior of a submit
+//where the default behavior is to redirect a page
+bookForm.addEventListener('submit', (e) => {
+  //~~~~~~~~~~~~ DO NOT FORGET THIS ~~~~~~~~~~~~~
+  e.preventDefault() // DO NOT FORGET THIS
+  
+//get values of form with e.target[name of input].value
+//note that i am passing in an object as an argument with the 
+//same struture as that in data.js
+  renderBook({
+    title: e.target.title.value,
+    author: e.target.author.value,
+    imageUrl: e.target.imageUrl.value,
+    price: e.target.price.value,
+    inventory: e.target.inventory
+  })
+})
+
+const toggleForm = () => {
+  if(bookForm.style.display === "none"){
+    bookForm.style.display = "block"
+  } else {
+    bookForm.style.display = "none"
+  }
+}
+
+formButton.addEventListener('click', toggleForm)
+
+/*formButton.addEventListener('click', () => {
+  // if form is not visible show it
+  if(bookForm.style.display === "none"){
+    bookForm.style.display = "block"
+  } else {
+    bookForm.style.display = "none"
+  }
+})*/
+
+function removeBook(card){
+  console.log('removing card')
+  card.remove()
+}
+
+
 function renderBook(book) {
 	const li = document.createElement("li");
 	li.className = "card";
@@ -22,7 +71,7 @@ function renderBook(book) {
 	//✅ 1. on delete button click, remove card from DOM
 	//✅ 1a. attach eventListener
 	//✅ 1b. include callback function to remove card instance
-
+  deleteBtn.addEventListener('click', () => removeBook(li))
 	//✅ 1c. define cb outside of renderBook
 
 	bookList.append(li);
