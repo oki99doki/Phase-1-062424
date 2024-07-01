@@ -23,6 +23,44 @@ const bookForm = document.querySelector('#book-form'); //book form
   //✅ 3b. use data to update DOM
 //✅ 3c. add a .catch for errors
 
+//id is the unique identifier for each individual store
+//not only can you access all the stores with /stores
+//you can access individual stores via its unique id
+//such as stores/1
+fetch('http://localhost:3000/stores/3') // => Promise
+//extract the data from the response
+//response contains a lot of other things such as the status code,
+//text, timestamp, content type, content length
+.then(response => response.json())
+.then(stores => {
+  console.log(stores)
+  renderHeader(stores)
+  renderFooter(stores)
+})
+
+//asking the server to get the data at /book
+//this returns a promise which we are going to have to wait for  
+//to fulfill
+fetch('http://localhost:3000/books') // => Promise
+//if the promise successfully fulfills, we will get a response from the
+//server
+//which contains a bunch of stuff including our data (as JSON)
+.then(res => {
+  //console.log(res)
+  //specificall extracting the data from our response
+  //res.json returns a promise so we also have to wait for that to fulfill
+  return res.json()
+})
+//once our res.json()'s promise successfully fulfills you can do whatever you
+//want with the data
+.then(books => {
+  //console.log(books)
+  //in this case, we are iterating over books, and rendering each
+  //book to the page
+  books.forEach(renderBook)
+})
+
+
 /**
  * 
  * 
